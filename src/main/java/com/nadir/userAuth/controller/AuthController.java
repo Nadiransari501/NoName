@@ -7,6 +7,7 @@ import com.nadir.userAuth.repository.VerificationTokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 //import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +24,8 @@ import java.util.UUID;
 
 @Controller
 public class AuthController {
+	@Value("${base.url}")
+	private String baseUrl;
 
     @Autowired
     private UserRepository userRepository;
@@ -181,7 +184,8 @@ public class AuthController {
         tokenRepository.save(verificationToken);
 
         // ✅ Send password reset mail
-        String resetUrl = "http://localhost:8086/reset-password?token=" + token;
+        String resetUrl = baseUrl + "/reset-password?token=" + token;
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmail());
         message.setSubject("Password Reset Request");
