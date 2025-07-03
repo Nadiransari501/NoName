@@ -28,7 +28,9 @@ public class EmailService {
     // ✅ Forgot Password Reset Email
     public void sendResetPasswordEmail(String to, String token) {
         String subject = "Password Reset Request";
-        String resetLink = "http://localhost:8080/reset-password?token=" + token;
+//        String resetLink = "http://localhost:8080/reset-password?token=" + token;
+        String resetLink = "https://web-production-ea27.up.railway.app/reset-password?token=" + token;
+
         String body = "Hi,\n\nTo reset your password, click the following link:\n" + resetLink +
                       "\n\nIf you didn't request a password reset, ignore this email.";
 
