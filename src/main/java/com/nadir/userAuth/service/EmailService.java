@@ -1,6 +1,7 @@
 package com.nadir.userAuth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,13 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Value("${base.url}")
+    private String baseUrl;
+
     // ✔ Email Verification
     public void sendVerificationEmail(String to, String token) {
         String subject = "Email Verification";
-        String link = "http://localhost:8080/verify?token=" + token;
+        String link = baseUrl + "/verify?token=" + token;
         String body = "Please click the following link to verify your email: \n" + link;
 
         SimpleMailMessage msg = new SimpleMailMessage();
@@ -28,8 +32,7 @@ public class EmailService {
     // ✅ Forgot Password Reset Email
     public void sendResetPasswordEmail(String to, String token) {
         String subject = "Password Reset Request";
-//        String resetLink = "http://localhost:8080/reset-password?token=" + token;
-        String resetLink = "https://web-production-ea27.up.railway.app/reset-password?token=" + token;
+        String resetLink = baseUrl + "/reset-password?token=" + token;
 
         String body = "Hi,\n\nTo reset your password, click the following link:\n" + resetLink +
                       "\n\nIf you didn't request a password reset, ignore this email.";
