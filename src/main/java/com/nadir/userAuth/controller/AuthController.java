@@ -1,6 +1,8 @@
 package com.nadir.userAuth.controller;
 
 import com.nadir.userAuth.model.User;
+import org.springframework.security.core.Authentication;
+
 import com.nadir.userAuth.model.VerificationToken;
 import com.nadir.userAuth.repository.UserRepository;
 import com.nadir.userAuth.repository.VerificationTokenRepository;
@@ -12,7 +14,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -233,11 +235,27 @@ public class AuthController {
         return "redirect:/login?resetSuccess";
     }
 
-    // ✅ Welcome page (after login)
-    @GetMapping("/welcome")
-    public String showWelcome() {
-        return "welcome";
+//    // ✅ Welcome page (after login)
+//    @GetMapping("/welcome")
+//    public String showWelcome() {
+//        return "redirect:/dashboard";
+//
+//    }
+    
+    
+ // ✅ User Dashboard (after login)
+    @GetMapping("/dashboard")
+    public String userDashboard(Model model, Authentication authentication) {
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email);
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "dashboard";  
     }
+
 }
 
 
