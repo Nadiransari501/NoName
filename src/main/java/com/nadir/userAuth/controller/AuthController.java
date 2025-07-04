@@ -242,25 +242,26 @@ public class AuthController {
 
     }
     
-    
-    @GetMapping("/dashboard")
-    public String userDashboard(Model model, Authentication authentication) {
-        if (authentication != null) {
-            String email = authentication.getName();
-            User user = userRepository.findByEmail(email);
+ @GetMapping("/dashboard")
+public String userDashboard(Model model, Authentication authentication) {
+        String email = authentication.getName();
+        User user = userRepository.findByEmail(email);
 
-            if (user != null) {
-                model.addAttribute("user", user);
-            } else {
-                System.out.println("⚠️ User not found for email: " + email);
-            }
-        } else {
-            System.out.println("⚠️ Authentication is null");
+        if (user == null) {
+            return "redirect:/login?sessionExpired";
+        }
+
+        if (user != null) {
+            model.addAttribute("user", user);
         }
 
         return "dashboard";
-    }
-}
+        
+        
+       
+
+    }}
+
 
 
 //
