@@ -47,6 +47,22 @@ input[type="text"] {
     transition: border-color 0.3s ease;
 }
 
+body {
+    font-family: Arial;
+    margin: 30px;
+    background: #f9f9f9;
+}
+
+h1 {
+    color: #333;
+}
+
+div {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
 input:focus {
     border-color: #007bff;
     outline: none;
