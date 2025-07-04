@@ -241,19 +241,16 @@ public class AuthController {
         return "redirect:/dashboard";
 
     }
-
     @GetMapping("/dashboard")
     public String userDashboard(Model model, Authentication authentication) {
-        String email = authentication.getName();
-        User user = userRepository.findByEmail(email);
-
-        System.out.println("🔍 Logged-in user: " + user); // Debug
+        String username = authentication.getName(); // ✅ Corrected: get username from Authentication
+        User user = userRepository.findByUsername(username); // ✅ Use username to fetch user
 
         if (user != null) {
             model.addAttribute("user", user);
         }
 
-        return "dashboard";
+        return "dashboard"; // ✅ Must match your dashboard.html
     }
 
 

@@ -2,14 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #34495e;
+        }
+
+        .logout {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .logout a {
+            text-decoration: none;
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout a:hover {
+            background-color: #c0392b;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome, <span th:text="${user?.name ?: 'User'}">User</span>!</h1>
+    <div class="container">
+        <h1>Welcome, <span th:text="${user.name}">User</span>!</h1>
 
-    <p>Email: <span th:text="${user?.email ?: 'Not Available'}"></span></p>
-    <p>Username: <span th:text="${user?.username ?: 'N/A'}"></span></p>
-    <p>Phone: <span th:text="${user?.phone ?: 'N/A'}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${user.email}">Not Available</span></p>
+        <p><strong>Username:</strong> <span th:text="${user.username}">N/A</span></p>
+        <p><strong>Phone:</strong> <span th:text="${user.phone}">N/A</span></p>
 
-    <a href="/logout">Logout</a>
+        <div class="logout">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
 </body>
 </html>
