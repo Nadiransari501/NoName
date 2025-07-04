@@ -14,7 +14,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.Authentication;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -243,19 +243,23 @@ public class AuthController {
     }
     
     
- // ✅ User Dashboard (after login)
     @GetMapping("/dashboard")
     public String userDashboard(Model model, Authentication authentication) {
-        String email = authentication.getName();
-        User user = userRepository.findByEmail(email);
+        if (authentication != null) {
+            String email = authentication.getName();
+            User user = userRepository.findByEmail(email);
 
-        if (user != null) {
-            model.addAttribute("user", user);
+            if (user != null) {
+                model.addAttribute("user", user);
+            } else {
+                System.out.println("⚠️ User not found for email: " + email);
+            }
+        } else {
+            System.out.println("⚠️ Authentication is null");
         }
 
-        return "dashboard";  
+        return "dashboard";
     }
-
 }
 
 

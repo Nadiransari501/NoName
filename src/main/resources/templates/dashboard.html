@@ -2,17 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User Dashboard</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>User Dashboard</h1>
+    <h1>Welcome to Dashboard</h1>
+    
+    <!-- Remove or comment out these to test -->
+    <!-- <p th:text="${user.email}"></p> -->
 
-    <p><strong>Username:</strong> <span th:text="${user.username}">Username</span></p>
-    <p><strong>Email:</strong> <span th:text="${user.email}">Email</span></p>
-    <p><strong>Name:</strong> <span th:text="${user.name}">Name</span></p>
-    <p><strong>Phone:</strong> <span th:text="${user.phone}">Phone</span></p>
-
-    <br><br>
     <a href="/logout">Logout</a>
 </body>
 </html>
