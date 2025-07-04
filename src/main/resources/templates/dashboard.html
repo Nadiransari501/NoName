@@ -4,10 +4,11 @@
     <title>User Dashboard</title>
 </head>
 <body>
-    <h1>Welcome to Dashboard</h1>
-    
-    <!-- Remove or comment out these to test -->
-    <!-- <p th:text="${user.email}"></p> -->
+    <h1>Welcome, <span th:text="${user.name}">User</span>!</h1>
+
+    <p>Email: <span th:text="${user.email}"></span></p>
+    <p>Username: <span th:text="${user.username}"></span></p>
+    <p>Phone: <span th:text="${user.phone}">N/A</span></p>
 
     <a href="/logout">Logout</a>
 </body>
