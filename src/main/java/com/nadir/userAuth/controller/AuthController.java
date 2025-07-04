@@ -241,26 +241,23 @@ public class AuthController {
         return "redirect:/dashboard";
 
     }
-    
- @GetMapping("/dashboard")
-public String userDashboard(Model model, Authentication authentication) {
+
+    @GetMapping("/dashboard")
+    public String userDashboard(Model model, Authentication authentication) {
         String email = authentication.getName();
         User user = userRepository.findByEmail(email);
 
-        if (user == null) {
-            return "redirect:/login?sessionExpired";
-        }
+        System.out.println("🔍 Logged-in user: " + user); // Debug
 
         if (user != null) {
             model.addAttribute("user", user);
         }
 
         return "dashboard";
-        
-        
-       
+    }
 
-    }}
+
+}
 
 
 
