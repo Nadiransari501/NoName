@@ -235,12 +235,12 @@ public class AuthController {
         return "redirect:/login?resetSuccess";
     }
 
-//    // ✅ Welcome page (after login)
-//    @GetMapping("/welcome")
-//    public String showWelcome() {
-//        return "redirect:/dashboard";
-//
-//    }
+    // ✅ Welcome page (after login)
+    @GetMapping("/welcome")
+    public String showWelcome() {
+        return "redirect:/dashboard";
+
+    }
     
     
  // ✅ User Dashboard (after login)

@@ -36,6 +36,7 @@ public class SecurityConfig {
                     "/",                     // home
                     "/home",                 // home
                     "/login",                // login GET + POST
+                    "/dashboard",
                     "/register",             // register GET + POST
                     "/verify",               // email verification
                     "/forgot-password",      // forgot password
@@ -48,7 +49,7 @@ public class SecurityConfig {
             .formLogin(form -> form
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/welcome", true)
+                .defaultSuccessUrl("/dashboard", true)
                 .permitAll()
             )
             .logout(logout -> logout
