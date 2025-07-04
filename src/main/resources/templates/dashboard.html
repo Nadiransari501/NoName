@@ -1,4 +1,3 @@
-<!-- src/main/resources/templates/dashboard.html -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,13 +7,12 @@
 <body>
     <h1>User Dashboard</h1>
 
-    <div>
-        <p><strong>Name:</strong> <span th:text="${user.name}">User Name</span></p>
-        <p><strong>Email:</strong> <span th:text="${user.email}">User Email</span></p>
-        <p><strong>Phone:</strong> <span th:text="${user.phone}">User Phone</span></p>
-    </div>
+    <p><strong>Username:</strong> <span th:text="${user.username}">Username</span></p>
+    <p><strong>Email:</strong> <span th:text="${user.email}">Email</span></p>
+    <p><strong>Name:</strong> <span th:text="${user.name}">Name</span></p>
+    <p><strong>Phone:</strong> <span th:text="${user.phone}">Phone</span></p>
 
-    <br>
+    <br><br>
     <a href="/logout">Logout</a>
 </body>
 </html>
